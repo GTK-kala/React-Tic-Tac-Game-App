@@ -15,19 +15,19 @@
   padding-left: 15px;
 }
 .reset{
-  width: 100px;
+  width: 120px;
   height: 60px;
   border: none;
   outline: none;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 30px;
   color: #26ffcd;
   background: #1f3540;
   position: relative;
   left: -25px;
   top: -50px;
   font-size: bold 20px;
-  font-weight: 600;
+  font-weight: 800;
 }
 .boxes{
   display: flex;
@@ -45,4 +45,7 @@
   margin: auto;
   position: relative;
   right: -100px;
+}
+.boxes img{
+   margin: 15px 15px;
 }
