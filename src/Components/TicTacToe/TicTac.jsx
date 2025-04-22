@@ -29,53 +29,77 @@ const TicTac = () => {
     checkWin();
   }
    const checkWin = () => {
-     if(data[0] === data[1] && data[1] === data[2] && data[0] !== ""){
-        won(data);
-        alert("Player " + data[0] + " wins");  
+     if(data[0] === data[1] && data[1] === data[2] && data[2] !== ""){
+        won(data[2]);
+        setTimeout(() =>[
+         alert("Player " + data[2] + " wins")
+        ],1000)   
      }
-     else if(data[3] === data[4] && data[4] === data[5] && data[3] !== ""){
-        won(data);
-        alert("Player " + data[0] + " wins"); 
+     else if(data[3] === data[4] && data[4] === data[5] && data[5] !== ""){
+        won(data[5]);
+        setTimeout(() =>{
+         alert("Player " + data[3] + " wins")
+        },1000)
      }
-     else if(data[6] === data[7] && data[7] === data[8] && data[6] !== ""){
-        won(data);
-        alert("Player " + data[0] + " wins");  
+     else if(data[6] === data[7] && data[7] === data[8] && data[8] !== ""){
+        won(data[8]);
+        setTimeout(() =>{
+         alert("Player " + data[8] + " wins")
+        },1000) 
      }
-     else if(data[0] === data[3] && data[3] === data[6] && data[0] !== ""){
-        won(data);
-        alert("Player " + data[0] + " wins"); 
+     else if(data[0] === data[3] && data[3] === data[6] && data[6] !== ""){
+        won(data[6]);
+        setTimeout(() =>{
+         alert("Player " + data[6] + " wins")
+        },1000)
      }
-     else if(data[1] === data[4] && data[4] === data[7] && data[1] !== ""){
-        won(data);
-        alert("Player " + data[0] + " wins");  
+     else if(data[1] === data[4] && data[4] === data[7] && data[7] !== ""){
+        won(data[7]);
+        setTimeout(() =>{
+         alert("Player " + data[7] + " wins")
+        },1000) 
      }
-     else if(data[2] === data[5] && data[5] === data[8] && data[2] !== ""){
-        won(data);
-        alert("Player " + data[0] + " wins"); 
+     else if(data[2] === data[5] && data[5] === data[8] && data[8] !== ""){
+        won(data[8]);
+        setTimeout(() =>{
+         alert("Player " + data[2] + " wins")
+        },1000)
      }
-     else if(data[0] === data[4] && data[4] === data[8] && data[0] !== ""){
-        won(data);
-         alert("Player " + data[0] + " wins");  
+     else if(data[0] === data[4] && data[4] === data[8] && data[8] !== ""){
+        won(data[8]);
+        setTimeout(() =>{
+         alert("Player " + data[8] + " wins")
+        },1000) 
      }
-     else if(data[2] === data[4] && data[4] === data[6] && data[2] !== ""){
-        won(data);    
-         alert("Player " + data[0] + " wins");   
+     else if(data[2] === data[4] && data[4] === data[6] && data[6] !== ""){
+        won(data[6]);    
+        setTimeout(() =>{
+         alert("Player " + data[6] + " wins")
+        },1000)
      }
    }
    const won = (winner) => {
      setLock(true);
      if(winner === "X"){
-      titleRef.current.innerHTML = "Player X wins"
+      titleRef.current.innerHTML =`Congratulations:<img src=${cross_icon} alt="cross image"/> wins`;
   }
   else if(winner === "O"){
-      titleRef.current.innerHTML = "Player O wins"
+      titleRef.current.innerHTML =`Congratulations:<img src=${circle_icon} alt="circle image"/>wins`;
 
   }
+  else if(winner === ""){
+      titleRef.current.innerHTML =`Game Draw`;
+      setTimeout(() =>{
+         alert("Game Draw")
+      },1000)
+    }
    }
+
    const reset = () =>{
        data = ["", "", "", "", "", "", "", "", ""]
        setCount(0);
        setLock(false);
+       titleRef.current.innerHTML = "Tic Tac Toe Game In <span>React</span>"
          for(let i=0; i<9; i++){
             document.getElementsByClassName("boxes")[i].innerHTML = ""
          }

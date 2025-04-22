@@ -49,3 +49,9 @@
 .boxes img{
    margin: 15px 15px;
 }
+.title img{
+  padding: 20px 20px;
+  height: 25px;
+  position: relative;
+  bottom: -5px;
+}
