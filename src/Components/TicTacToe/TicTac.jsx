@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useRef } from 'react'
 import circle_icon from '../Assets/circle.png'
 import cross_icon from '../Assets/cross.png'
 import  './TicTac.css'
@@ -9,11 +9,13 @@ const TicTac = () => {
 
    let [count , setCount] = useState(0);
    let [lock , setLock] = useState(false);
+   let titleRef = useRef(null);
 
     const toggle = (w,num) => {
        if(lock){
-        return 0
+        return 0;
        }
+   
        if(count%2 === 0){
          data[num] = "X";
          setCount(count+1);
@@ -24,48 +26,65 @@ const TicTac = () => {
         setCount(count+1);
         document.getElementsByClassName("boxes")[num].innerHTML = `<img src=${circle_icon} alt="circle image"/>`
     }
+    checkWin();
   }
    const checkWin = () => {
      if(data[0] === data[1] && data[1] === data[2] && data[0] !== ""){
         won(data);
-        alert(`${data[0]} is the winner`)
+        alert("Player " + data[0] + " wins");  
      }
      else if(data[3] === data[4] && data[4] === data[5] && data[3] !== ""){
         won(data);
-        alert(`${data[3]} is the winner`)
+        alert("Player " + data[0] + " wins"); 
      }
      else if(data[6] === data[7] && data[7] === data[8] && data[6] !== ""){
         won(data);
-        alert(`${data[6]} is the winner`)
+        alert("Player " + data[0] + " wins");  
      }
      else if(data[0] === data[3] && data[3] === data[6] && data[0] !== ""){
         won(data);
-        alert(`${data[0]} is the winner`)
+        alert("Player " + data[0] + " wins"); 
      }
      else if(data[1] === data[4] && data[4] === data[7] && data[1] !== ""){
         won(data);
-        alert(`${data[1]} is the winner`)
+        alert("Player " + data[0] + " wins");  
      }
      else if(data[2] === data[5] && data[5] === data[8] && data[2] !== ""){
         won(data);
-        alert(`${data[2]} is the winner`)
+        alert("Player " + data[0] + " wins"); 
      }
      else if(data[0] === data[4] && data[4] === data[8] && data[0] !== ""){
         won(data);
-        alert(`${data[0]} is the winner`)
+         alert("Player " + data[0] + " wins");  
      }
      else if(data[2] === data[4] && data[4] === data[6] && data[2] !== ""){
-        won(data);
-        alert(`${data[2]} is the winner`)
+        won(data);    
+         alert("Player " + data[0] + " wins");   
      }
    }
    const won = (winner) => {
      setLock(true);
+     if(winner === "X"){
+      titleRef.current.innerHTML = "Player X wins"
+  }
+  else if(winner === "O"){
+      titleRef.current.innerHTML = "Player O wins"
+
+  }
    }
+   const reset = () =>{
+       data = ["", "", "", "", "", "", "", "", ""]
+       setCount(0);
+       setLock(false);
+         for(let i=0; i<9; i++){
+            document.getElementsByClassName("boxes")[i].innerHTML = ""
+         }
+   }
+
   return (
     <>
       <div className="container">
-         <h1 className='title'>Tic Tac Toe Game In <span>  React</span></h1>
+         <h1 className='title' ref={titleRef}>Tic Tac Toe Game In <span>  React</span></h1>
           <div className="board">
              <div className="row1">
                <div className="boxes" onClick={(e) => toggle(e,0)}></div>
@@ -83,7 +102,7 @@ const TicTac = () => {
                <div className="boxes" onClick={(e) => toggle(e,8)}></div>
              </div>
           </div>
-          <button className="reset">Reset</button>
+          <button className="reset" onClick={reset}>Reset</button>
       </div>
     </>
   )
